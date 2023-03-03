@@ -63,20 +63,20 @@
                     <td class="text-center">{{$loop->iteration}}.</td>
                         <td class="text-center">{{$cart->namaproduct}}</td>
                         <td class="text-center">{{$cart->quantity}}</td>
-                        <td class="text-center">{{$cart->price}}</td>
+                        <td class="text-center">@currency($cart->price)</td>
                         <td class="text-center"><img src="/product/{{$cart->img}}" width="100px"></td>
                         <td class="text-center">
                             <a href="{{url('remove_cart',$cart->id)}}" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Product Dari Cart?')" class="btn btn-danger"><i class="bi bi-trash3-fill"></i> Hapus</a>
                         </td>
                   </tr>
-                  <?php $totalprice=$totalprice + $cart->price ?>
+                  <?php  $totalprice=$totalprice + $cart->price ?>
 
                   @endforeach
 
 
                 </tbody>
             </table>
-            <h3 style="font-size:25px" class="mb-5 mt-3 text-start">Harga Total : {{$totalprice}}</h3>
+            <h3 style="font-size:25px" class="mb-5 mt-3 text-start">Harga Total : @currency($totalprice)</h3>
          </div>
       </div>
       <div class="cpy_">

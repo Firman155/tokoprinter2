@@ -41,20 +41,20 @@
               <div class="detail-box">
                   <h6 style="text-decoration: line-through; color:red">
                     Harga Product :
-                    Rp {{$products->price}}
+                    @currency($products->price)
                   </h6>
               </div>
               <div class="detail-box">
                 <h6 style="color: blue">
                     Harga Diskon    :
-                    Rp {{$products->discount_price}}
+                    @currency($products->discount_price)
                 </h6>
               </div>
               @else
               <div class="detail-box">
                 <h6 style="color: blue">
                   Harga Product :
-                  Rp {{$products->price}}
+                  @currency($products->price)
                 </h6>
               </div>
               @endif

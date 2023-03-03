@@ -41,19 +41,19 @@
 
                   <h6 class="mb-2" style="text-decoration: line-through; color:red">
                     Harga Product :
-                    Rp {{$product->price}}
+                    @currency($product->price)
                   </h6>
 
 
                 <h6 class="mb-2" style="color: blue">
                     Harga Diskon    :
-                    Rp {{$product->discount_price}}
+                    @currency($product->discount_price)
                 </h6>
 
               @else
                 <h6 class="mb-2" style="color: blue">
                   Harga Product :
-                  Rp {{$product->price}}
+                  @currency($product->price)
                 </h6>
               @endif
                 <h6 class="mb-2">Deskripsi : {{$product->deskripsi}}</h6>

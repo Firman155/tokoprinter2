@@ -55,8 +55,8 @@
                         <td class="text-center">{{$product->deskripsi}}</td>
                         <td class="text-center">{{$product->category}}</td>
                         <td class="text-center">{{$product->quantity}}</td>
-                        <td class="text-center">{{$product->price}}</td>
-                        <td class="text-center">{{$product->discount_price}}</td>
+                        <td class="text-center">@currency($product->price)</td>
+                        <td class="text-center">@currency($product->discount_price)</td>
                         <td>
                             <img src="/product/{{$product->img}}" class="mx-auto">
                         </td>
