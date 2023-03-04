@@ -11,7 +11,7 @@
       <meta name="description" content="" />
       <meta name="author" content="" />
       <link rel="shortcut icon" href="images/favicon.png" type="">
-      <title>Dodolan Printer | Keranjang</title>
+      <title>Dodolan Printer | Orderan Anda</title>
       <!-- bootstrap core css -->
       <link rel="stylesheet" type="text/css" href="{{asset('home/css/bootstrap.css')}}" />
       <!-- font awesome style -->
@@ -35,23 +35,16 @@
          @include('home.header')
          <!-- end header section -->
          <div class="col-sm-10 col-md-10 col-lg-10" style="margin: auto">
-            <h1 class="text-center mb-4 mt-5" style="font-size: 30px; font-family:'Poppins';">Daftar Barang Di Cart Anda</h1>
+            <h1 class="text-center mb-4 mt-5" style="font-size: 30px; font-family:'Poppins';">Daftar Barang Orderan Anda</h1>
 
-            @if(session()->has('hapus'))
+            @if(session()->has('cancel'))
             <div class="alert alert-danger">
                 <button type="button" data-dismiss="alert" aria-hidden="true" class="close">x</button>
-                {{session()->get('hapus')}}
+                {{session()->get('cancel')}}
             </div>
            @endif
 
-            @if(session()->has('cod'))
-            <div class="alert alert-primary">
-                <button type="button" data-dismiss="alert" aria-hidden="true" class="close">x</button>
-                {{session()->get('cod')}}
-            </div>
-           @endif
-
-            <table class="table table-hover" style="font-family: 'Poppins'">
+            <table class="table table-hover mb-5" style="font-family: 'Poppins'">
                 <thead class="bg-primary">
                   <tr>
                     <th scope="col" class="text-center">No.</th>
@@ -59,37 +52,33 @@
                     <th scope="col" class="text-center">Quantity</th>
                     <th scope="col" class="text-center">Harga</th>
                     <th scope="col" class="text-center">Gambar</th>
+                    <th scope="col" class="text-center">Payment Status</th>
+                    <th scope="col" class="text-center">Delivery Status</th>
                     <th scope="col" class="text-center">Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
-
-                    <?php $totalprice=0; ?>
-
-                    @foreach($cart as $cart)
+                    @foreach($order as $order)
                   <tr>
                     <td class="text-center">{{$loop->iteration}}.</td>
-                        <td class="text-center">{{$cart->namaproduct}}</td>
-                        <td class="text-center">{{$cart->quantity}}</td>
-                        <td class="text-center">@currency($cart->price)</td>
-                        <td class="text-center"><img src="/product/{{$cart->img}}" width="100px" class="mx-auto"></td>
+                        <td class="text-center">{{$order->namaproduct}}</td>
+                        <td class="text-center">{{$order->quantity}}</td>
+                        <td class="text-center">@currency($order->price)</td>
+                        <td class="text-center"><img src="/product/{{$order->img}}" width="100px"></td>
+                        <td class="text-center">{{$order->payment_status}}</td>
+                        <td class="text-center">{{$order->delivery_status}}</td>
                         <td class="text-center">
-                            <a href="{{url('remove_cart',$cart->id)}}" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Product Dari Cart?')" class="btn btn-danger"><i class="bi bi-trash" style="font-size:25px"></i></a>
+                            @if($order->delivery_status=='Processing')
+                            <a href="{{url('cancel_order',$order->id)}}" onclick="return confirm('Apakah Anda Yakin Ingin Membatalkan Orderan?')" class="btn btn-danger">Batalkan Orderan</a>
+
+                            @else
+                            <p class="text-primary">Pesanan Selesai</p>
+                            @endif
                         </td>
                   </tr>
-                  <?php  $totalprice=$totalprice + $cart->price ?>
-
                   @endforeach
-
-
                 </tbody>
             </table>
-            <h3 style="font-size:20px" class="mb-2 mt-3 text-start">Harga Total : @currency($totalprice)</h3>
-
-            <div class="mb-5">
-                <h3 style="font-size: 18px" class="mb-2">Konfirmasi Pembelian : </h3>
-                <a href="{{url('cash_order')}}" class="btn btn-primary">Beli Sekarang</a>
-            </div>
          </div>
       </div>
       <div class="cpy_">

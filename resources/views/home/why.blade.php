@@ -2,7 +2,7 @@
     <div class="container">
        <div class="heading_container heading_center">
           <h2>
-             Why Shop With Us
+             Apa Keuntungan Belanja Di Dodolan Printer?
           </h2>
        </div>
        <div class="row">
@@ -97,10 +97,10 @@
                 </div>
                 <div class="detail-box">
                    <h5>
-                      Fast Delivery
+                      Pengiriman Cepat
                    </h5>
                    <p>
-                      variations of passages of Lorem Ipsum available
+                      Klik Order, 2 Hari Sampai!
                    </p>
                 </div>
              </div>
@@ -212,10 +212,10 @@
                 </div>
                 <div class="detail-box">
                    <h5>
-                      Free Shiping
+                      Gratis Ongkir
                    </h5>
                    <p>
-                      variations of passages of Lorem Ipsum available
+                      Tak Perlu Repot Bayar Ongkir
                    </p>
                 </div>
              </div>
@@ -233,10 +233,10 @@
                 </div>
                 <div class="detail-box">
                    <h5>
-                      Best Quality
+                      Kualitas Bagus
                    </h5>
                    <p>
-                      variations of passages of Lorem Ipsum available
+                      Kualitas Bagus & Original
                    </p>
                 </div>
              </div>

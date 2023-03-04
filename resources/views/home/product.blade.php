@@ -7,6 +7,14 @@
              <span>Product</span> Kami
           </h2>
        </div>
+       <div class="col-12">
+           @if(session()->has('cart'))
+                  <div class="alert alert-primary">
+                      <button type="button" data-dismiss="alert" aria-hidden="true" class="close">x</button>
+                      {{session()->get('cart')}}
+                  </div>
+           @endif
+          </div>
        <div class="row">
         @foreach ($product as $products)
         <div div class="col-sm-6 col-md-4 col-lg-4">
@@ -58,6 +66,13 @@
                 </h6>
               </div>
               @endif
+              <div style="color: orange" class="mt-2">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-half"></i>
+              </div>
            </div>
         </div>
         @endforeach

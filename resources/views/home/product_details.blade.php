@@ -2,7 +2,6 @@
 <html>
    <head>
       <!-- Basic -->
-      <base href="/public">
       <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <!-- Mobile Metas -->
@@ -12,15 +11,15 @@
       <meta name="description" content="" />
       <meta name="author" content="" />
       <link rel="shortcut icon" href="images/favicon.png" type="">
-      <title>Famms - Fashion HTML Template</title>
+      <title>Dodolan Printer | Product Details</title>
       <!-- bootstrap core css -->
-      <link rel="stylesheet" type="text/css" href="home/css/bootstrap.css" />
+      <link rel="stylesheet" type="text/css" href="{{asset('home/css/bootstrap.css')}}" />
       <!-- font awesome style -->
-      <link href="home/css/font-awesome.min.css" rel="stylesheet" />
+      <link href="{{asset('home/css/font-awesome.min.css')}}" rel="stylesheet" />
       <!-- Custom styles for this template -->
-      <link href="home/css/style.css" rel="stylesheet" />
+      <link href="{{asset('home/css/style.css')}}" rel="stylesheet" />
       <!-- responsive style -->
-      <link href="home/css/responsive.css" rel="stylesheet" />
+      <link href="{{asset('home/css/responsive.css')}}" rel="stylesheet" />
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
    </head>
    <body>
@@ -31,8 +30,14 @@
 
          <div class="col-sm-6 col-md-4 col-lg-4" style="margin: auto; padding:30px">
             <div class="card" style="width: 18rem;">
+                @if(session()->has('cart'))
+                    <div class="alert alert-primary">
+                        <button type="button" data-dismiss="alert" aria-hidden="true" class="close">x</button>
+                        {{session()->get('cart')}}
+                    </div>
+                @endif
                 <h3 class="text-center mt-3 mb-3">Product Details</h3>
-                <img src="product/{{$product->img}}" class="card-img-top" width="300" height="300">
+                <img src="/product/{{$product->img}}" class="card-img-top" width="300" height="300">
                 <div class="card-body text-center">
                   <h5>{{$product->namaproduct}}</h5>
                 </div>
@@ -75,11 +80,6 @@
               </div>
          </div>
       </div>
-
-
-      <!-- footer start -->
-      @include('home.footer')
-      <!-- footer end -->
       <div class="cpy_">
          <p class="mx-auto">© 2021 All Rights Reserved By <a href="https://html.design/">Free Html Templates</a><br>
 

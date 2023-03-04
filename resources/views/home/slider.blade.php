@@ -7,21 +7,21 @@
           <div class="carousel-item active">
              <div class="container ">
                 <div class="row">
-                   <div class="col-md-7 col-lg-6 ">
+                   <div class="col-md-8 col-lg-8 ">
                       <div class="detail-box">
                          <h1>
                             <span>
-                            Sale 20% Off
+                            Selamat Datang Di
                             </span>
                             <br>
-                            On Everything
+                            Dodolan Printer
                          </h1>
                          <p>
-                            Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
+                            <strong>Dodolan Printer</strong> adalah website toko printer yang menyediakan berbagai merek printer serta berbagai perlengkapannya. Selain lengkap, <strong>Dodolan Printer</strong> juga menjual dengan harga yang terjangkau. Jadi tunggu apa lagi langsung saja belanja di <strong>Dodolan Printer</strong> Sekarang!
                          </p>
                          <div class="btn-box">
-                            <a href="" class="btn1">
-                            Shop Now
+                            <a href="{{url('products')}}" class="btn1">
+                            Belanja Sekarang
                             </a>
                          </div>
                       </div>
@@ -32,21 +32,21 @@
           <div class="carousel-item ">
              <div class="container ">
                 <div class="row">
-                   <div class="col-md-7 col-lg-6 ">
+                   <div class="col-md-8 col-lg-8 ">
                       <div class="detail-box">
-                         <h1>
+                        <h1>
                             <span>
-                            Sale 20% Off
+                            Nikmati Harga Special
                             </span>
                             <br>
-                            On Everything
+                            Dari Dodolan Printer
                          </h1>
                          <p>
-                            Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
+                            Kami menyediakan berbagai macam merek printer hingga perlengkapannya dengan harga yang sangat terjangkau. Selain itu kami juga menyediakan berbagai macam diskon special untuk anda. Tunggu apa lagi langsung saja Belanja di <strong>Dodolan Printer</strong> sekarang juga!
                          </p>
                          <div class="btn-box">
-                            <a href="" class="btn1">
-                            Shop Now
+                            <a href="{{url('products')}}" class="btn1">
+                            Belanja Sekarang
                             </a>
                          </div>
                       </div>
@@ -57,21 +57,21 @@
           <div class="carousel-item">
              <div class="container ">
                 <div class="row">
-                   <div class="col-md-7 col-lg-6 ">
+                   <div class="col-md-8 col-lg-8 ">
                       <div class="detail-box">
-                         <h1>
+                        <h1>
                             <span>
-                            Sale 20% Off
+                            Diskon Besar
                             </span>
                             <br>
-                            On Everything
+                            Tiap Awal Bulan !!!
                          </h1>
                          <p>
-                            Explicabo esse amet tempora quibusdam laudantium, laborum eaque magnam fugiat hic? Esse dicta aliquid error repudiandae earum suscipit fugiat molestias, veniam, vel architecto veritatis delectus repellat modi impedit sequi.
+                            Nikmati diskon besar - besaran hingga 50% di setiap awal bulan. Hanya di toko kami, yang selalu memberikan promo terbaik untuk anda! Jadi tunggu apa lagi, langsung belanja di <strong>Dodolan Printer</strong> sekarang, dan nikmati berbagai macam promo menarik dari kami!
                          </p>
                          <div class="btn-box">
-                            <a href="" class="btn1">
-                            Shop Now
+                            <a href="{{url('products')}}" class="btn1">
+                            Belanja Sekarang
                             </a>
                          </div>
                       </div>

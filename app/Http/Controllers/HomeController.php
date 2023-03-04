@@ -12,6 +12,8 @@ use App\Models\Product;
 
 use App\Models\Cart;
 
+use App\Models\Order;
+
 class HomeController extends Controller
 {
     public function index()
@@ -26,7 +28,22 @@ class HomeController extends Controller
         $usertype=Auth::user()->usertype;
 
         if($usertype=='1'){
-            return view('admin.home');
+            $total_product=product::all()->count();
+            $total_order=order::all()->count();
+            $total_user=user::all()->count();
+            $order=order::all();
+
+            $total_revenue=0;
+
+            foreach($order as $order)
+            {
+                $total_revenue=$total_revenue+$order->price;
+            }
+
+            $total_delivered=order::where('delivery_status','=','dikirim')->get()->count();
+            $total_processing=order::where('delivery_status','=','Processing')->get()->count();
+
+            return view('admin.home', compact('total_product', 'total_order', 'total_user', 'total_revenue', 'total_delivered', 'total_processing'));
         }
 
         else{
@@ -46,33 +63,58 @@ class HomeController extends Controller
         if(Auth::id())
         {
             $user=Auth::user();
+            $userid=$user->id;
             $product=product::find($id);
-            $cart=new cart;
-            $cart->name=$user->name;
-            $cart->email=$user->email;
-            $cart->phone=$user->phone;
-            $cart->address=$user->address;
-            $cart->user_id=$user->id;
+            $product_exist_id=cart::where('product_id','=',$id)->where('user_id','=',$userid)->get('id')->first();
 
-            $cart->namaproduct=$product->namaproduct;
-
-            if($product->discount_price!=null)
+            if($product_exist_id)
             {
-                $cart->price=$product->discount_price * $request->quantity;
-            }
+                $cart=cart::find($product_exist_id)->first();
+                $quantity=$cart->quantity;
+                $cart->quantity=$quantity+$request->quantity;
+                if($product->discount_price!=null)
+                {
+                    $cart->price=$product->discount_price * $cart->quantity;
+                }
 
+                else
+                {
+                    $cart->price=$product->price * $cart->quantity;
+                }
+                $cart->save();
+                return redirect()->back()->with('cart', 'Product Berhasil Ditambahkan Ke Cart!');
+            }
             else
             {
-                $cart->price=$product->price * $request->quantity;
+
+                $cart=new cart;
+                $cart->name=$user->name;
+                $cart->email=$user->email;
+                $cart->phone=$user->phone;
+                $cart->address=$user->address;
+                $cart->user_id=$user->id;
+
+                $cart->namaproduct=$product->namaproduct;
+
+                if($product->discount_price!=null)
+                {
+                    $cart->price=$product->discount_price * $request->quantity;
+                }
+
+                else
+                {
+                    $cart->price=$product->price * $request->quantity;
+                }
+
+                $cart->img=$product->img;
+                $cart->product_id=$product->id;
+
+                $cart->quantity=$request->quantity;
+
+                $cart->save();
+                return redirect()->back()->with('cart', 'Product Berhasil Ditambahkan Ke Cart!');
             }
 
-            $cart->img=$product->img;
-            $cart->product_id=$product->id;
-
-            $cart->quantity=$request->quantity;
-
-            $cart->save();
-            return redirect()->back();
 
         }
         else
@@ -106,5 +148,70 @@ class HomeController extends Controller
         $cart->delete();
 
         return redirect()->back()->with('hapus', 'Product Berhasil Dihapus Dari Cart!');
+    }
+
+    public function cash_order()
+    {
+        $user=Auth::user();
+        $userid=$user->id;
+
+        $data=cart::where('user_id','=',$userid)->get();
+
+        foreach($data as $data)
+        {
+            $order=new order;
+            $order->name=$data->name;
+            $order->email=$data->email;
+            $order->phone=$data->phone;
+            $order->address=$data->address;
+            $order->user_id=$data->user_id;
+
+            $order->namaproduct=$data->namaproduct;
+            $order->price=$data->price;
+            $order->quantity=$data->quantity;
+            $order->img=$data->img;
+            $order->product_id=$data->product_id;
+
+            $order->payment_status='Cash On Delivery';
+            $order->delivery_status='Processing';
+
+            $order->save();
+
+            $cart_id=$data->id;
+            $cart=cart::find($cart_id);
+            $cart->delete();
+
+        }
+
+        return redirect()->back()->with('cod', 'Pesanan Berhasil Dibuat! Kami Akan Segera Mengonfirmasi Pesanan Anda. Terima Kasih!');
+    }
+
+    public function show_order()
+    {
+        if(Auth::id()){
+            $user=Auth::user();
+            $userid=$user->id;
+            $order=order::where('user_id','=',$userid)->get();
+
+            return view('home.order',compact('order'));
+
+        }else{
+            return redirect('login');
+        }
+    }
+
+    public function cancel_order($id)
+    {
+        $order=order::find($id);
+        $order->delivery_status='Pesanan DIbatalkan';
+
+        $order->save();
+        return redirect()->back()->with('cancel', 'Pesanan Berhasil Dibatalkan');
+    }
+
+    public function products()
+    {
+        $product=Product::paginate(6);
+        return view('home.all_product',compact('product'));
     }
 }

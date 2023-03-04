@@ -8,6 +8,8 @@ use App\Models\Category;
 
 use App\Models\Product;
 
+use App\Models\order;
+
 class AdminController extends Controller
 {
     public function view_category()
@@ -102,5 +104,22 @@ class AdminController extends Controller
 
         $product->save();
         return redirect()->back()->with('ubah', 'Product Berhasil Diubah!');
+    }
+
+    public function order()
+    {
+        $order=order::all();
+        return view('admin.order', compact('order'));
+    }
+
+    public function delivered($id)
+    {
+        $order=order::find($id);
+        $order->delivery_status="Dikirim";
+        $order->payment_status="Dibayar";
+
+        $order->save();
+
+        return redirect()->back()->with('terkirim', 'Product Akan Dikirim, Perubahan Status Berhasil Dilakukan!');
     }
 }
