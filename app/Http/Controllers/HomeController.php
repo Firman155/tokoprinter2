@@ -40,7 +40,7 @@ class HomeController extends Controller
                 $total_revenue=$total_revenue+$order->price;
             }
 
-            $total_delivered=order::where('delivery_status','=','dikirim')->get()->count();
+            $total_delivered=order::where('delivery_status','=','selesai')->get()->count();
             $total_processing=order::where('delivery_status','=','Processing')->get()->count();
 
             return view('admin.home', compact('total_product', 'total_order', 'total_user', 'total_revenue', 'total_delivered', 'total_processing'));
@@ -160,6 +160,9 @@ class HomeController extends Controller
         foreach($data as $data)
         {
             $order=new order;
+            $product = Product::find($data->product_id);
+            $product->quantity = $product->quantity - $data->quantity;
+            $product->save();
             $order->name=$data->name;
             $order->email=$data->email;
             $order->phone=$data->phone;

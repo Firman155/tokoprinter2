@@ -115,7 +115,7 @@ class AdminController extends Controller
     public function delivered($id)
     {
         $order=order::find($id);
-        $order->delivery_status="Dikirim";
+        $order->delivery_status="Selesai";
         $order->payment_status="Dibayar";
 
         $order->save();

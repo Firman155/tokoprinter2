@@ -59,7 +59,7 @@
                                 @if($order->delivery_status=='Processing')
                                 <a href="{{url('delivered', $order->id)}}" class="btn btn-primary" onclick="return confirm('Apakah Anda Yakin Akan Mengirim Barang Ini Sekarang?')">Kirim</a>
                                 @else
-                                <p class="text-primary">Terkirim</p>
+                                <p class="text-primary">Selesai</p>
                                 @endif
                             </td>
                           </tr>

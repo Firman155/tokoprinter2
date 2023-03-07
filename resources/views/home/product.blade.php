@@ -18,7 +18,7 @@
        <div class="row">
         @foreach ($product as $products)
         <div div class="col-sm-6 col-md-4 col-lg-4">
-           <div class="box">
+           <div class="box bg-light">
               <div class="option_container">
                  <div class="options">
                     <a href="{{url('product_details',$products->id)}}">
